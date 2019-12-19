@@ -1,2 +1,2 @@
 # JsonSchemaLab
-A tool do create and validate Json against JsonSchema
+A tool to create and validate Json against JsonSchema
