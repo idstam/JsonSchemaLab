@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace JsonSchemaLab
 {
-    public class TabbedRichTextBox:RichTextBox
+    public class TabbedRichTextBox : RichTextBox
     {
         public TabbedRichTextBox() : base() =>
     KeyDown += new KeyEventHandler(RichTextBox_KeyDown);
@@ -59,6 +59,7 @@ namespace JsonSchemaLab
                 ResumeLayout();
                 e.Handled = true;
             }
+
         }
     }
 }

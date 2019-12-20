@@ -156,5 +156,10 @@ namespace JsonSchemaLab
             }
 
         }
+
+        private void txtJson_SelectionChanged(object sender, EventArgs e)
+        {
+            lblJsonLine.Text = txtJson.GetLineFromCharIndex(txtJson.SelectionStart).ToString();
+        }
     }
 }
