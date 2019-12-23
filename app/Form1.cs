@@ -77,6 +77,7 @@ namespace JsonSchemaLab
             txtSchema.TabSize = 4;
             txtJson.ConvertTabToSpaces = true;
             txtJson.TabSize = 4;
+            loadTheme();
         }
 
         private void btnSaveSchema_Click(object sender, EventArgs e)
@@ -160,6 +161,26 @@ namespace JsonSchemaLab
         private void txtJson_SelectionChanged(object sender, EventArgs e)
         {
             lblJsonLine.Text = txtJson.GetLineFromCharIndex(txtJson.SelectionStart).ToString();
+        }
+
+        private void loadTheme()
+        {
+            var fileName = "themes/dark-solarized.json";
+            var theme = JsonConvert.DeserializeObject<themes.ThemeSettings>(File.ReadAllText(fileName));
+
+
+            //Color color = (Color)ColorConverter.ConvertFromString("#FFDFD991");
+            var c = new ColorConverter();
+            txtJson.BackColor = (Color)c.ConvertFromString(theme.Colors["editor.background"]);
+            txtSchema.BackColor = (Color)c.ConvertFromString(theme.Colors["editor.background"]);
+            txtError.BackColor = (Color)c.ConvertFromString(theme.Colors["editor.background"]);
+
+            txtJson.ForeColor= (Color)c.ConvertFromString(theme.Colors["input.foreground"]);
+            txtSchema.ForeColor = (Color)c.ConvertFromString(theme.Colors["input.foreground"]);
+            txtError.ForeColor = (Color)c.ConvertFromString(theme.Colors["input.foreground"]);
+
+            
+
         }
     }
 }
