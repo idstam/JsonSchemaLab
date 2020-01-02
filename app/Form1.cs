@@ -73,6 +73,7 @@ namespace JsonSchemaLab
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            
             txtSchema.ConvertTabToSpaces = true;
             txtSchema.TabSize = 4;
             txtJson.ConvertTabToSpaces = true;
@@ -171,6 +172,19 @@ namespace JsonSchemaLab
 
             //Color color = (Color)ColorConverter.ConvertFromString("#FFDFD991");
             var c = new ColorConverter();
+
+            this.BackColor = (Color)c.ConvertFromString(theme.Colors["tab.activeBackground"]);
+            menuStrip1.BackColor = (Color)c.ConvertFromString(theme.Colors["tab.activeBackground"]);
+            menuStrip1.ForeColor = (Color)c.ConvertFromString(theme.Colors["tab.activeForeground"]);
+
+
+            toolStrip1.BackColor = (Color)c.ConvertFromString(theme.Colors["tab.activeBackground"]);
+            
+            toolStrip2.BackColor = (Color)c.ConvertFromString(theme.Colors["tab.activeBackground"]);
+            toolStrip3.BackColor = (Color)c.ConvertFromString(theme.Colors["tab.activeBackground"]);
+
+            statusStrip1.ForeColor = (Color)c.ConvertFromString(theme.Colors["tab.activeForeground"]);
+
             txtJson.BackColor = (Color)c.ConvertFromString(theme.Colors["editor.background"]);
             txtSchema.BackColor = (Color)c.ConvertFromString(theme.Colors["editor.background"]);
             txtError.BackColor = (Color)c.ConvertFromString(theme.Colors["editor.background"]);
