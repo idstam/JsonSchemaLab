@@ -4,7 +4,7 @@ using System.Text;
 
 namespace JsonSchemaLab_Avalonia
 {
-    public class MainModel:Avalonia.Diagnostics.ViewModels.
+    public class MainModel
     {
         public string JsonText { get; set; }
         public string SchemaText { get; set; }
