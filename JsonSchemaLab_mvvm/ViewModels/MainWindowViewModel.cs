@@ -1,4 +1,6 @@
 ﻿using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using ReactiveUI;
 
 namespace JsonSchemaLab_mvvm.ViewModels
@@ -36,7 +38,9 @@ namespace JsonSchemaLab_mvvm.ViewModels
 
         public void OpenSchema_Click()
         {
-
+            var d = new OpenFileDialog();
+            var w = ((IClassicDesktopStyleApplicationLifetime)App.Current.ApplicationLifetime).MainWindow;
+            d.ShowAsync(w);
         }
         public void PasteSchema_Click()
         {
