@@ -33,23 +33,23 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblSchemaLine = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblJsonLine = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.txtSchema = new JsonSchemaLab.TabbedRichTextBox();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.btnLoadSchema = new System.Windows.Forms.ToolStripButton();
             this.btnPasteSchema = new System.Windows.Forms.ToolStripButton();
             this.btnSaveSchema = new System.Windows.Forms.ToolStripButton();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.txtJson = new JsonSchemaLab.TabbedRichTextBox();
             this.txtError = new System.Windows.Forms.RichTextBox();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.btnOpenJson = new System.Windows.Forms.ToolStripButton();
             this.btnPasteJson = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnValidate = new System.Windows.Forms.ToolStripButton();
-            this.txtSchema = new JsonSchemaLab.TabbedRichTextBox();
-            this.txtJson = new JsonSchemaLab.TabbedRichTextBox();
-            this.lblJsonLine = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -98,6 +98,25 @@
             this.lblSchemaLine.Size = new System.Drawing.Size(13, 17);
             this.lblSchemaLine.Text = "0";
             // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(792, 17);
+            this.toolStripStatusLabel2.Spring = true;
+            this.toolStripStatusLabel2.Text = "...";
+            // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(55, 17);
+            this.toolStripStatusLabel3.Text = "Json line:";
+            // 
+            // lblJsonLine
+            // 
+            this.lblJsonLine.Name = "lblJsonLine";
+            this.lblJsonLine.Size = new System.Drawing.Size(13, 17);
+            this.lblJsonLine.Text = "0";
+            // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -116,6 +135,23 @@
             this.splitContainer1.Size = new System.Drawing.Size(962, 488);
             this.splitContainer1.SplitterDistance = 496;
             this.splitContainer1.TabIndex = 2;
+            // 
+            // txtSchema
+            // 
+            this.txtSchema.AcceptsTab = true;
+            this.txtSchema.ConvertTabToSpaces = false;
+            this.txtSchema.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtSchema.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSchema.Location = new System.Drawing.Point(0, 25);
+            this.txtSchema.Name = "txtSchema";
+            this.txtSchema.Size = new System.Drawing.Size(496, 463);
+            this.txtSchema.TabIndex = 0;
+            this.txtSchema.TabSize = 4;
+            this.txtSchema.Text = "Paste Schema here...";
+            this.txtSchema.WordWrap = false;
+            this.txtSchema.SelectionChanged += new System.EventHandler(this.txtSchema_SelectionChanged);
+            this.txtSchema.TextChanged += new System.EventHandler(this.txtSchema_TextChanged);
+            this.txtSchema.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtSchema_KeyUp);
             // 
             // toolStrip2
             // 
@@ -178,6 +214,20 @@
             this.splitContainer2.Size = new System.Drawing.Size(462, 463);
             this.splitContainer2.SplitterDistance = 266;
             this.splitContainer2.TabIndex = 2;
+            // 
+            // txtJson
+            // 
+            this.txtJson.AcceptsTab = true;
+            this.txtJson.ConvertTabToSpaces = false;
+            this.txtJson.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtJson.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtJson.Location = new System.Drawing.Point(0, 0);
+            this.txtJson.Name = "txtJson";
+            this.txtJson.Size = new System.Drawing.Size(462, 266);
+            this.txtJson.TabIndex = 1;
+            this.txtJson.TabSize = 4;
+            this.txtJson.Text = "Paste Json here...";
+            this.txtJson.SelectionChanged += new System.EventHandler(this.txtJson_SelectionChanged);
             // 
             // txtError
             // 
@@ -242,55 +292,6 @@
             this.btnValidate.Text = "toolStripButton1";
             this.btnValidate.ToolTipText = "Validate";
             this.btnValidate.Click += new System.EventHandler(this.btnValidate_Click);
-            // 
-            // txtSchema
-            // 
-            this.txtSchema.AcceptsTab = true;
-            this.txtSchema.ConvertTabToSpaces = false;
-            this.txtSchema.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtSchema.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSchema.Location = new System.Drawing.Point(0, 25);
-            this.txtSchema.Name = "txtSchema";
-            this.txtSchema.Size = new System.Drawing.Size(496, 463);
-            this.txtSchema.TabIndex = 0;
-            this.txtSchema.TabSize = 4;
-            this.txtSchema.Text = "";
-            this.txtSchema.WordWrap = false;
-            this.txtSchema.SelectionChanged += new System.EventHandler(this.txtSchema_SelectionChanged);
-            this.txtSchema.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtSchema_KeyUp);
-            // 
-            // txtJson
-            // 
-            this.txtJson.AcceptsTab = true;
-            this.txtJson.ConvertTabToSpaces = false;
-            this.txtJson.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtJson.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtJson.Location = new System.Drawing.Point(0, 0);
-            this.txtJson.Name = "txtJson";
-            this.txtJson.Size = new System.Drawing.Size(462, 266);
-            this.txtJson.TabIndex = 1;
-            this.txtJson.TabSize = 4;
-            this.txtJson.Text = "";
-            this.txtJson.SelectionChanged += new System.EventHandler(this.txtJson_SelectionChanged);
-            // 
-            // lblJsonLine
-            // 
-            this.lblJsonLine.Name = "lblJsonLine";
-            this.lblJsonLine.Size = new System.Drawing.Size(13, 17);
-            this.lblJsonLine.Text = "0";
-            // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(761, 17);
-            this.toolStripStatusLabel2.Spring = true;
-            this.toolStripStatusLabel2.Text = "...";
-            // 
-            // toolStripStatusLabel3
-            // 
-            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(55, 17);
-            this.toolStripStatusLabel3.Text = "Json line:";
             // 
             // frmMain
             // 

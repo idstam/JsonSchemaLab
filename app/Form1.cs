@@ -78,7 +78,7 @@ namespace JsonSchemaLab
             txtSchema.TabSize = 4;
             txtJson.ConvertTabToSpaces = true;
             txtJson.TabSize = 4;
-            loadTheme();
+            //loadTheme();
         }
 
         private void btnSaveSchema_Click(object sender, EventArgs e)
@@ -194,6 +194,11 @@ namespace JsonSchemaLab
             txtError.ForeColor = (Color)c.ConvertFromString(theme.Colors["input.foreground"]);
 
             
+
+        }
+
+        private void txtSchema_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }
