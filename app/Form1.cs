@@ -22,12 +22,30 @@ namespace JsonSchemaLab
             InitializeComponent();
         }
 
-        private void btnValidate_Click(object sender, EventArgs e)
-        {
-            ValidateJson();
-        }
 
-        private void ValidateJson()
+        private void ValidateJsonManatee()
+        {
+            txtError.Text = "";
+            var serializer = new Manatee.Json.Serialization.JsonSerializer();
+            var json = Manatee.Json.JsonValue.Parse(txtJson.Text);
+            var schemaJson = Manatee.Json.JsonValue.Parse(txtSchema.Text);
+            var schema = new Manatee.Json.Schema.JsonSchema();
+            schema.FromJson(schemaJson, serializer);
+            Manatee.Json.Schema.JsonSchemaOptions.OutputFormat = Manatee.Json.Schema.SchemaValidationOutputFormat.Basic;
+
+            var validationResults = schema.Validate(json);
+
+            if (!validationResults.IsValid)
+            {
+
+                json = serializer.Serialize(validationResults);
+
+
+                txtError.Text = JsonHelper.FormatJson(json.ToString());
+            }
+
+        }
+        private void ValidateJsonNewtonSoft()
         {
             JSchema schema;
             JObject data;
@@ -63,12 +81,12 @@ namespace JsonSchemaLab
 
         private void btnPasteSchema_Click(object sender, EventArgs e)
         {
-            txtSchema.Text = Clipboard.GetText();
+            txtSchema.Text =JsonHelper.FormatJson(Clipboard.GetText());
         }
 
         private void btnPasteJson_Click(object sender, EventArgs e)
         {
-            txtJson.Text = Clipboard.GetText();
+            txtJson.Text = JsonHelper.FormatJson(Clipboard.GetText());
         }
 
         private void frmMain_Load(object sender, EventArgs e)
@@ -76,9 +94,40 @@ namespace JsonSchemaLab
             
             txtSchema.ConvertTabToSpaces = true;
             txtSchema.TabSize = 4;
+            txtSchema.AllowDrop = true;
+            txtSchema.DragEnter += txt_DragEnter;
+            txtSchema.DragDrop += txt_DragDrop;
+
             txtJson.ConvertTabToSpaces = true;
             txtJson.TabSize = 4;
+            txtJson.AllowDrop = true;
+            txtJson.DragEnter += txt_DragEnter;
+            txtJson.DragDrop += txt_DragDrop;
             //loadTheme();
+        }
+
+        private void txt_DragDrop(object sender, DragEventArgs e)
+        {
+            var txt = sender as TabbedRichTextBox;
+            if(txt == null)
+            {
+                return;
+            }
+            var fileName = (string[])e.Data.GetData("FileName");
+
+            txt.Text = JsonHelper.FormatJson(File.ReadAllText(fileName[0]));
+        }
+
+        private void txt_DragEnter(object sender, DragEventArgs e)
+        {
+            // Determine whether string data exists in the drop data. If not, then
+            // the drop effect reflects that the drop cannot occur.
+            if (!e.Data.GetFormats().Contains("FileName"))
+            {
+
+                e.Effect = DragDropEffects.None;
+                return;
+            }
         }
 
         private void btnSaveSchema_Click(object sender, EventArgs e)
@@ -126,7 +175,7 @@ namespace JsonSchemaLab
             
             if (_schemaFileName != "")
             {
-                txtJson.Text = File.ReadAllText(dlg.FileName);
+                txtJson.Text = JsonHelper.FormatJson(File.ReadAllText(dlg.FileName));
             }
 
         }
@@ -138,7 +187,7 @@ namespace JsonSchemaLab
             _schemaFileName = dlg.FileName;
             if(_schemaFileName != "")
             {
-                txtSchema.Text = File.ReadAllText(_schemaFileName);
+                txtSchema.Text = JsonHelper.FormatJson(File.ReadAllText(_schemaFileName));
             }
         }
 
@@ -152,7 +201,7 @@ namespace JsonSchemaLab
             //Validate
             if (e.KeyCode == Keys.F5)
             {
-                ValidateJson();
+                ValidateJsonManatee();
                 e.Handled = true;
                 return;
             }
@@ -162,6 +211,23 @@ namespace JsonSchemaLab
         private void txtJson_SelectionChanged(object sender, EventArgs e)
         {
             lblJsonLine.Text = txtJson.GetLineFromCharIndex(txtJson.SelectionStart).ToString();
+        }
+
+        private void btnValidate_Click(object sender, EventArgs e)
+        {
+            var oldCursor = this.Cursor;
+            this.Cursor = Cursors.WaitCursor;
+            ValidateJsonNewtonSoft();
+            this.Cursor = oldCursor;
+        }
+
+        private void btnValidateManatee_Click(object sender, EventArgs e)
+        {
+            var oldCursor = this.Cursor;
+            this.Cursor = Cursors.WaitCursor;
+            ValidateJsonManatee();
+            this.Cursor = oldCursor;
+
         }
 
         private void loadTheme()
@@ -174,8 +240,6 @@ namespace JsonSchemaLab
             var c = new ColorConverter();
 
             this.BackColor = (Color)c.ConvertFromString(theme.Colors["tab.activeBackground"]);
-            menuStrip1.BackColor = (Color)c.ConvertFromString(theme.Colors["tab.activeBackground"]);
-            menuStrip1.ForeColor = (Color)c.ConvertFromString(theme.Colors["tab.activeForeground"]);
 
 
             toolStrip1.BackColor = (Color)c.ConvertFromString(theme.Colors["tab.activeBackground"]);
@@ -201,5 +265,6 @@ namespace JsonSchemaLab
         {
 
         }
+
     }
 }
