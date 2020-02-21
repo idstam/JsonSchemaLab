@@ -43,6 +43,10 @@ namespace JsonSchemaLab
 
                 txtError.Text = JsonHelper.FormatJson(json.ToString());
             }
+            else
+            {
+                txtError.Text = "Valid";
+            }
 
         }
         private void ValidateJsonNewtonSoft()
@@ -69,7 +73,7 @@ namespace JsonSchemaLab
 
                 JsonSerializer serializer = new JsonSerializer();
                 serializer.Deserialize(validatingReader);// true
-                txtError.Text = "";
+                txtError.Text = "Valid";
             }
             catch (Exception ex)
             {
