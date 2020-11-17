@@ -25,29 +25,35 @@ namespace JsonSchemaLab
 
         private void ValidateJsonManatee()
         {
-            txtError.Text = "";
-            var serializer = new Manatee.Json.Serialization.JsonSerializer();
-            var json = Manatee.Json.JsonValue.Parse(txtJson.Text);
-            var schemaJson = Manatee.Json.JsonValue.Parse(txtSchema.Text);
-            var schema = new Manatee.Json.Schema.JsonSchema();
-            schema.FromJson(schemaJson, serializer);
-            
-            var options = new Manatee.Json.Schema.JsonSchemaOptions(); 
-            options.OutputFormat = Manatee.Json.Schema.SchemaValidationOutputFormat.Basic;
-
-            var validationResults = schema.Validate(json, options);
-
-            if (!validationResults.IsValid)
+            try
             {
+                txtError.Text = "";
+                var serializer = new Manatee.Json.Serialization.JsonSerializer();
+                var json = Manatee.Json.JsonValue.Parse(txtJson.Text);
+                var schemaJson = Manatee.Json.JsonValue.Parse(txtSchema.Text);
+                var schema = new Manatee.Json.Schema.JsonSchema();
+                schema.FromJson(schemaJson, serializer);
 
-                json = serializer.Serialize(validationResults);
+                var options = new Manatee.Json.Schema.JsonSchemaOptions();
+                options.OutputFormat = Manatee.Json.Schema.SchemaValidationOutputFormat.Basic;
+
+                var validationResults = schema.Validate(json, options);
+
+                if (!validationResults.IsValid)
+                {
+
+                    json = serializer.Serialize(validationResults);
 
 
-                txtError.Text = JsonHelper.FormatJson(json.ToString());
+                    txtError.Text = JsonHelper.FormatJson(json.ToString());
+                }
+                else
+                {
+                    txtError.Text = "Valid";
+                }
             }
-            else
-            {
-                txtError.Text = "Valid";
+            catch(Exception ex) {
+                txtError.Text = ex.ToString();
             }
 
         }
