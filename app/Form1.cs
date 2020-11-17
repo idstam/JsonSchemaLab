@@ -31,9 +31,11 @@ namespace JsonSchemaLab
             var schemaJson = Manatee.Json.JsonValue.Parse(txtSchema.Text);
             var schema = new Manatee.Json.Schema.JsonSchema();
             schema.FromJson(schemaJson, serializer);
-            Manatee.Json.Schema.JsonSchemaOptions.OutputFormat = Manatee.Json.Schema.SchemaValidationOutputFormat.Basic;
+            
+            var options = new Manatee.Json.Schema.JsonSchemaOptions(); 
+            options.OutputFormat = Manatee.Json.Schema.SchemaValidationOutputFormat.Basic;
 
-            var validationResults = schema.Validate(json);
+            var validationResults = schema.Validate(json, options);
 
             if (!validationResults.IsValid)
             {
