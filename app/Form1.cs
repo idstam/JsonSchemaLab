@@ -177,11 +177,8 @@ namespace JsonSchemaLab
             var dlg = new OpenFileDialog();
             dlg.ShowDialog();
             
-            if (_schemaFileName != "")
-            {
-                txtJson.Text = JsonHelper.FormatJson(File.ReadAllText(dlg.FileName));
-            }
-
+            txtJson.Text = JsonHelper.FormatJson(File.ReadAllText(dlg.FileName));
+            
         }
 
         private void btnLoadSchema_Click(object sender, EventArgs e)
