@@ -1,5 +1,8 @@
 ﻿using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using ReactiveUI;
+using System.IO;
 
 namespace JsonSchemaLab_mvvm.ViewModels
 {
@@ -31,32 +34,67 @@ namespace JsonSchemaLab_mvvm.ViewModels
 
         public void Validate()
         {
-
+            ErrorText = JsonHelper.ValidateJson(JsonText, SchemaText);
         }
 
-        public void OpenSchema_Click()
+        public void ValidateSchema()
         {
+            ErrorText = JsonHelper.ValidateSchema(JsonText, SchemaText);
+        }
 
+        public async void OpenSchema_Click()
+        {
+            var d = new OpenFileDialog();
+            var w = ((IClassicDesktopStyleApplicationLifetime)App.Current.ApplicationLifetime).MainWindow;
+
+            var result = await d.ShowAsync(w);
+            if (result.Length > 0)
+            {
+                var str = File.ReadAllText(result[0]);
+                SchemaText = JsonHelper.FormatJson(str);
+            }
         }
         public void PasteSchema_Click()
         {
-            SchemaText = Application.Current.Clipboard.GetTextAsync().Result;
+            SchemaText = JsonHelper.FormatJson(Application.Current.Clipboard.GetTextAsync().Result);
         }
-        public void SaveSchema_Click()
+        public async void SaveSchema_Click()
         {
+            var d = new SaveFileDialog();
+            var w = ((IClassicDesktopStyleApplicationLifetime)App.Current.ApplicationLifetime).MainWindow;
+            var result = await d.ShowAsync(w);
+            if (result.Length > 0)
+            {
+                File.WriteAllText(result, SchemaText);
+            }
 
         }
-        public void OpenJson_Click()
+        public async void OpenJson_Click()
         {
+            var d = new OpenFileDialog();
+            var w = ((IClassicDesktopStyleApplicationLifetime)App.Current.ApplicationLifetime).MainWindow;
+
+            var result = await d.ShowAsync(w);
+            if (result.Length > 0)
+            {
+                var str = File.ReadAllText(result[0]);
+                JsonText = JsonHelper.FormatJson(str);
+            }
 
         }
         public void PasteJson_Click()
         {
-            JsonText = Application.Current.Clipboard.GetTextAsync().Result;
+            JsonText = JsonHelper.FormatJson(Application.Current.Clipboard.GetTextAsync().Result);
         }
-        public void SaveJson_Click()
+        public async void SaveJson_Click()
         {
-
+            var d = new SaveFileDialog();
+            var w = ((IClassicDesktopStyleApplicationLifetime)App.Current.ApplicationLifetime).MainWindow;
+            var result = await d.ShowAsync(w);
+            if (result.Length > 0)
+            {
+                File.WriteAllText(result, JsonText);
+            }
         }
     }
 }

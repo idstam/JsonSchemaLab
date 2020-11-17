@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29418.71
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonSchemaLab_mvvm", "JsonSchemaLab_mvvm\JsonSchemaLab_mvvm.csproj", "{5A745120-38D3-4802-996A-29CCA42085F1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AvaloniaEdit", "..\..\Avalonia\AvaloniaEdit\src\AvaloniaEdit\AvaloniaEdit.csproj", "{40FEA2F6-CCCB-4242-AFE5-7352356B4287}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5A745120-38D3-4802-996A-29CCA42085F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A745120-38D3-4802-996A-29CCA42085F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A745120-38D3-4802-996A-29CCA42085F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A745120-38D3-4802-996A-29CCA42085F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40FEA2F6-CCCB-4242-AFE5-7352356B4287}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40FEA2F6-CCCB-4242-AFE5-7352356B4287}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40FEA2F6-CCCB-4242-AFE5-7352356B4287}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40FEA2F6-CCCB-4242-AFE5-7352356B4287}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3C45F4FF-5A22-4AAB-8593-9E3BAA84E8D0}
+	EndGlobalSection
+EndGlobal

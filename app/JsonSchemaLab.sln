@@ -5,12 +5,6 @@ VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonSchemaLab", "JsonSchemaLab.csproj", "{55015128-E9BD-48B9-9DD2-899D9C4B829E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonSchemaLab_Avalonia", "..\JsonSchemaLab_Avalonia\JsonSchemaLab_Avalonia.csproj", "{B6D189A9-2B05-466F-9144-B7AFA70ED653}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonSchemaLab_mvvm", "..\JsonSchemaLab_mvvm\JsonSchemaLab_mvvm.csproj", "{5A745120-38D3-4802-996A-29CCA42085F1}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AvaloniaEdit", "..\..\..\Avalonia\AvaloniaEdit\src\AvaloniaEdit\AvaloniaEdit.csproj", "{40FEA2F6-CCCB-4242-AFE5-7352356B4287}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,18 +15,6 @@ Global
 		{55015128-E9BD-48B9-9DD2-899D9C4B829E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55015128-E9BD-48B9-9DD2-899D9C4B829E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55015128-E9BD-48B9-9DD2-899D9C4B829E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B6D189A9-2B05-466F-9144-B7AFA70ED653}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B6D189A9-2B05-466F-9144-B7AFA70ED653}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B6D189A9-2B05-466F-9144-B7AFA70ED653}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B6D189A9-2B05-466F-9144-B7AFA70ED653}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5A745120-38D3-4802-996A-29CCA42085F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5A745120-38D3-4802-996A-29CCA42085F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5A745120-38D3-4802-996A-29CCA42085F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5A745120-38D3-4802-996A-29CCA42085F1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{40FEA2F6-CCCB-4242-AFE5-7352356B4287}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{40FEA2F6-CCCB-4242-AFE5-7352356B4287}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{40FEA2F6-CCCB-4242-AFE5-7352356B4287}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{40FEA2F6-CCCB-4242-AFE5-7352356B4287}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
