@@ -41,7 +41,6 @@ namespace JsonSchemaLab
 
                 if (!validationResults.IsValid)
                 {
-
                     json = serializer.Serialize(validationResults);
 
 
@@ -53,7 +52,7 @@ namespace JsonSchemaLab
                 }
             }
             catch(Exception ex) {
-                txtError.Text = ex.ToString();
+                txtError.Text = "Parse error: " + ex.Message;
             }
 
         }
@@ -75,13 +74,26 @@ namespace JsonSchemaLab
 
             try
             {
-                JsonTextReader reader = new JsonTextReader(new StringReader(txtJson.Text));
-                JSchemaValidatingReader validatingReader = new JSchemaValidatingReader(reader);
-                validatingReader.Schema = schema;
-
+                JObject message = JObject.Parse(txtJson.Text);
+                var isValid = message.IsValid(schema, out IList<ValidationError> errors);
+                if (isValid)
+                {
+                    txtError.Text = "Valid";
+                    return;
+                }
                 JsonSerializer serializer = new JsonSerializer();
-                serializer.Deserialize(validatingReader);// true
-                txtError.Text = "Valid";
+                txtError.Text =  JsonConvert.SerializeObject(errors, Formatting.Indented);
+                
+
+
+                //JsonTextReader reader = new JsonTextReader(new StringReader(txtJson.Text));
+                //JSchemaValidatingReader validatingReader = new JSchemaValidatingReader(reader);
+                //validatingReader.Schema = schema;
+
+                //JsonSerializer serializer = new JsonSerializer();
+                //serializer.Deserialize(validatingReader);// true
+                //txtError.Text = "Valid";
+
             }
             catch (Exception ex)
             {
@@ -184,19 +196,23 @@ namespace JsonSchemaLab
         {
             var dlg = new OpenFileDialog();
             dlg.ShowDialog();
-            
-            txtJson.Text = JsonHelper.FormatJson(File.ReadAllText(dlg.FileName));
-            
+            if (File.Exists(dlg.FileName))
+            {
+                txtJson.Text = JsonHelper.FormatJson(File.ReadAllText(dlg.FileName));
+            }
         }
 
         private void btnLoadSchema_Click(object sender, EventArgs e)
         {
             var dlg = new OpenFileDialog();
             dlg.ShowDialog();
-            _schemaFileName = dlg.FileName;
-            if(_schemaFileName != "")
+            if (File.Exists(dlg.FileName))
             {
-                txtSchema.Text = JsonHelper.FormatJson(File.ReadAllText(_schemaFileName));
+                _schemaFileName = dlg.FileName;
+                if (_schemaFileName != "")
+                {
+                    txtSchema.Text = JsonHelper.FormatJson(File.ReadAllText(_schemaFileName));
+                }
             }
         }
 
