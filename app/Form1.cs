@@ -59,7 +59,6 @@ namespace JsonSchemaLab
         private void ValidateJsonNewtonSoft()
         {
             JSchema schema;
-            JObject data;
 
             try
             {
