@@ -17,6 +17,7 @@ namespace JsonSchemaLab
     public partial class frmMain : Form
     {
         private string _schemaFileName = "";
+        private string _jsonFileName = "";
         public frmMain()
         {
             InitializeComponent();
@@ -179,6 +180,26 @@ namespace JsonSchemaLab
             _schemaFileName = dlg.FileName;
         }
 
+        private void SaveJson(string fileName)
+        {
+            if (fileName != "")
+            {
+                File.WriteAllText(fileName, txtJson.Text);
+                return;
+            }
+
+            var dlg = new SaveFileDialog();
+
+
+            dlg.FileName = fileName;
+
+            dlg.ShowDialog(this);
+            if (dlg.FileName != "")
+            {
+                File.WriteAllText(dlg.FileName, txtJson.Text);
+            }
+            _jsonFileName = dlg.FileName;
+        }
         private void txtSchema_KeyUp(object sender, KeyEventArgs e)
         {
             //Save
@@ -290,5 +311,9 @@ namespace JsonSchemaLab
 
         }
 
+        private void btnSaveJson_Click(object sender, EventArgs e)
+        {
+            SaveJson("");
+        }
     }
 }

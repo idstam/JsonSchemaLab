@@ -36,20 +36,21 @@
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblJsonLine = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.txtSchema = new JsonSchemaLab.TabbedRichTextBox();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.btnLoadSchema = new System.Windows.Forms.ToolStripButton();
             this.btnPasteSchema = new System.Windows.Forms.ToolStripButton();
             this.btnSaveSchema = new System.Windows.Forms.ToolStripButton();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.txtJson = new JsonSchemaLab.TabbedRichTextBox();
             this.txtError = new System.Windows.Forms.RichTextBox();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.btnOpenJson = new System.Windows.Forms.ToolStripButton();
             this.btnPasteJson = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btnValidate = new System.Windows.Forms.ToolStripButton();
-            this.txtSchema = new JsonSchemaLab.TabbedRichTextBox();
-            this.txtJson = new JsonSchemaLab.TabbedRichTextBox();
             this.btnValidateManatee = new System.Windows.Forms.ToolStripButton();
+            this.btnValidate = new System.Windows.Forms.ToolStripButton();
+            this.btnSaveJson = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -128,6 +129,23 @@
             this.splitContainer1.SplitterDistance = 629;
             this.splitContainer1.TabIndex = 2;
             // 
+            // txtSchema
+            // 
+            this.txtSchema.AcceptsTab = true;
+            this.txtSchema.ConvertTabToSpaces = false;
+            this.txtSchema.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtSchema.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSchema.Location = new System.Drawing.Point(0, 25);
+            this.txtSchema.Name = "txtSchema";
+            this.txtSchema.Size = new System.Drawing.Size(629, 718);
+            this.txtSchema.TabIndex = 0;
+            this.txtSchema.TabSize = 4;
+            this.txtSchema.Text = "";
+            this.txtSchema.WordWrap = false;
+            this.txtSchema.SelectionChanged += new System.EventHandler(this.txtSchema_SelectionChanged);
+            this.txtSchema.TextChanged += new System.EventHandler(this.txtSchema_TextChanged);
+            this.txtSchema.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtSchema_KeyUp);
+            // 
             // toolStrip2
             // 
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -187,6 +205,20 @@
             this.splitContainer2.SplitterDistance = 412;
             this.splitContainer2.TabIndex = 2;
             // 
+            // txtJson
+            // 
+            this.txtJson.AcceptsTab = true;
+            this.txtJson.ConvertTabToSpaces = false;
+            this.txtJson.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtJson.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtJson.Location = new System.Drawing.Point(0, 0);
+            this.txtJson.Name = "txtJson";
+            this.txtJson.Size = new System.Drawing.Size(587, 412);
+            this.txtJson.TabIndex = 1;
+            this.txtJson.TabSize = 4;
+            this.txtJson.Text = "";
+            this.txtJson.SelectionChanged += new System.EventHandler(this.txtJson_SelectionChanged);
+            // 
             // txtError
             // 
             this.txtError.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -201,7 +233,8 @@
             // 
             this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnOpenJson,
-            this.btnPasteJson});
+            this.btnPasteJson,
+            this.btnSaveJson});
             this.toolStrip3.Location = new System.Drawing.Point(0, 0);
             this.toolStrip3.Name = "toolStrip3";
             this.toolStrip3.Size = new System.Drawing.Size(587, 25);
@@ -239,6 +272,16 @@
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // btnValidateManatee
+            // 
+            this.btnValidateManatee.Image = ((System.Drawing.Image)(resources.GetObject("btnValidateManatee.Image")));
+            this.btnValidateManatee.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnValidateManatee.Name = "btnValidateManatee";
+            this.btnValidateManatee.Size = new System.Drawing.Size(143, 22);
+            this.btnValidateManatee.Text = "Validate with Manatee";
+            this.btnValidateManatee.ToolTipText = "Validate with Manatee";
+            this.btnValidateManatee.Click += new System.EventHandler(this.btnValidateManatee_Click);
+            // 
             // btnValidate
             // 
             this.btnValidate.Image = ((System.Drawing.Image)(resources.GetObject("btnValidate.Image")));
@@ -249,46 +292,14 @@
             this.btnValidate.ToolTipText = "Validate";
             this.btnValidate.Click += new System.EventHandler(this.btnValidate_Click);
             // 
-            // txtSchema
+            // btnSaveJson
             // 
-            this.txtSchema.AcceptsTab = true;
-            this.txtSchema.ConvertTabToSpaces = false;
-            this.txtSchema.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtSchema.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSchema.Location = new System.Drawing.Point(0, 25);
-            this.txtSchema.Name = "txtSchema";
-            this.txtSchema.Size = new System.Drawing.Size(629, 718);
-            this.txtSchema.TabIndex = 0;
-            this.txtSchema.TabSize = 4;
-            this.txtSchema.Text = "";
-            this.txtSchema.WordWrap = false;
-            this.txtSchema.SelectionChanged += new System.EventHandler(this.txtSchema_SelectionChanged);
-            this.txtSchema.TextChanged += new System.EventHandler(this.txtSchema_TextChanged);
-            this.txtSchema.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtSchema_KeyUp);
-            // 
-            // txtJson
-            // 
-            this.txtJson.AcceptsTab = true;
-            this.txtJson.ConvertTabToSpaces = false;
-            this.txtJson.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtJson.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtJson.Location = new System.Drawing.Point(0, 0);
-            this.txtJson.Name = "txtJson";
-            this.txtJson.Size = new System.Drawing.Size(587, 412);
-            this.txtJson.TabIndex = 1;
-            this.txtJson.TabSize = 4;
-            this.txtJson.Text = "";
-            this.txtJson.SelectionChanged += new System.EventHandler(this.txtJson_SelectionChanged);
-            // 
-            // btnValidateManatee
-            // 
-            this.btnValidateManatee.Image = ((System.Drawing.Image)(resources.GetObject("btnValidateManatee.Image")));
-            this.btnValidateManatee.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnValidateManatee.Name = "btnValidateManatee";
-            this.btnValidateManatee.Size = new System.Drawing.Size(143, 22);
-            this.btnValidateManatee.Text = "Validate with Manatee";
-            this.btnValidateManatee.ToolTipText = "Validate with Manatee";
-            this.btnValidateManatee.Click += new System.EventHandler(this.btnValidateManatee_Click);
+            this.btnSaveJson.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveJson.Image")));
+            this.btnSaveJson.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSaveJson.Name = "btnSaveJson";
+            this.btnSaveJson.Size = new System.Drawing.Size(77, 22);
+            this.btnSaveJson.Text = "Save Json";
+            this.btnSaveJson.Click += new System.EventHandler(this.btnSaveJson_Click);
             // 
             // frmMain
             // 
@@ -348,6 +359,7 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
         private System.Windows.Forms.ToolStripStatusLabel lblJsonLine;
         private System.Windows.Forms.ToolStripButton btnValidateManatee;
+        private System.Windows.Forms.ToolStripButton btnSaveJson;
     }
 }
 
